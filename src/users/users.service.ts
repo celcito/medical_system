@@ -4,7 +4,10 @@ import { Repository } from 'typeorm';
 import { User } from './users.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { HttpException, HttpStatus } from '@nestjs/common';
+import { randomBytes, scrypt as _scrypt } from 'crypto';
+import { promisify } from 'util';
 
+const scrypt = promisify(_scrypt);
 @Injectable()
 export class UsersService {
   constructor(
@@ -32,19 +35,19 @@ export class UsersService {
     return this.userRepository.findOne({where:{id}});
   }
 
-  async createUser(createUserDto: CreateUserDto): Promise<User> {
+  async createUser(data: CreateUserDto): Promise<User> {
     try {
 
-/*       const user = this.userRepository.create({
-        email: createUserDto.email,
-        password: createUserDto.password,
-        firstName:createUserDto.firstName,
-        lastName:createUserDto.lastName,
-      }); */
+    const salt = randomBytes(8).toString('hex');
+    const hash = (await scrypt(data.password, salt, 32)) as Buffer;
+    const saltAndHash = `${salt}.${hash.toString('hex')}`;
 
-    const user = this.userRepository.create(createUserDto);
-
-
+    const user = this.userRepository.create({
+        email: data.email,
+        password: saltAndHash,
+        firstName:data.firstName,
+        lastName:data.lastName,
+      }); 
 
       await this.userRepository.save(user);
       return user;
