@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { UsersService } from '../users/users.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { User } from '../users/users.entity';
+import { JwtService } from '@nestjs/jwt';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -20,6 +21,12 @@ describe('AuthService', () => {
         {
           provide: getRepositoryToken(User),
           useClass: User,
+        },
+        {
+          provide:JwtService,
+          useValue:{
+            signAsync:jest.fn().mockResolvedValue(null)
+          }
         },
       ],
     }).compile();

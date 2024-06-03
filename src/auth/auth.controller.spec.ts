@@ -4,6 +4,7 @@ import { UsersService } from '../users/users.service';
 import { AuthService } from './auth.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { User } from '../users/users.entity';
+import { JwtService } from '@nestjs/jwt';
 
 describe('AuthController', () => {
   let controller: AuthController;
@@ -13,13 +14,13 @@ describe('AuthController', () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [AuthController],
       providers: [
-        AuthService, // Fornecer o AuthService real
+        AuthService,
         {
           provide: UsersService,
           useValue: {
             findOneByEmail: jest.fn().mockResolvedValue({
               email: "testqqtss333@acme.com",
-              password: "@7777Celcito4",
+              password: "@7777Celcito",
             }),
           },
         },
@@ -27,13 +28,18 @@ describe('AuthController', () => {
           provide: getRepositoryToken(User),
           useClass: User,
         },
+        {
+        provide:JwtService,
+        useValue:{
+          signAsync:jest.fn().mockResolvedValue('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RxcXRzczMzM0BhY21lLmNvbSIsInN1YiI6MywiaWF0IjoxNzE3NDE5MTMwLCJleHAiOjE3MTc0MTkxOTB9.3is2NIWrJiUpqEYOkp2e4s9jhcimG1bCr1kHQIA_d')
+        }
+      },
       ],
     }).compile();
 
     controller = module.get<AuthController>(AuthController);
     authService = module.get<AuthService>(AuthService);
 
-    // Espiar o método signIn do AuthService e definir o comportamento do mock
     jest.spyOn(authService, 'signIn').mockImplementation((email, password) =>
       Promise.resolve({
         email,

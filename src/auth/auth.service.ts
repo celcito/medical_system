@@ -4,6 +4,7 @@ import { scrypt as _scrypt } from 'crypto';
 import { promisify } from 'util';
 import { JwtService } from '@nestjs/jwt';
 
+
 const scrypt = promisify(_scrypt);
 
 @Injectable()
