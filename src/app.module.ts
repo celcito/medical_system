@@ -5,6 +5,7 @@ import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import {ConfigModule} from '@nestjs/config'
 import { AuthModule } from './auth/auth.module';
+import { MedicalCareModule } from './medical-care/medical-care.module';
 
 
 
@@ -22,7 +23,7 @@ import { AuthModule } from './auth/auth.module';
     entities: [__dirname + '/**/*.entity{.ts,.js}'],
     synchronize:true,
     migrationsRun: true,
-  }),UsersModule, AuthModule,],
+  }),UsersModule, AuthModule, MedicalCareModule,],
   controllers: [AppController],
   providers: [AppService],
 
