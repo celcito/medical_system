@@ -1,4 +1,4 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './users.entity';
@@ -29,8 +29,6 @@ export class UsersService {
     return this.userRepository.findOne({ where: { email } });
   }
 
-  
-
   async findById(id: number): Promise<User | undefined> {
     return this.userRepository.findOne({where:{id}});
   }
@@ -47,18 +45,14 @@ export class UsersService {
         password: saltAndHash,
         firstName:data.firstName,
         lastName:data.lastName,
+        birthDate:data.birthDate
       }); 
 
       await this.userRepository.save(user);
       return user;
     } catch (error) {
       console.error('Erro ao criar usuário:', error);
-      throw new HttpException('Registro em uso', HttpStatus.CONFLICT);
+      throw new HttpException(error?.message , HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 }
-
-
-
-
-
