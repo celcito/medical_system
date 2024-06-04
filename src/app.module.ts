@@ -6,12 +6,15 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import {ConfigModule} from '@nestjs/config'
 import { AuthModule } from './auth/auth.module';
 import { MedicalCareModule } from './medical-care/medical-care.module';
+//import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 
 
 @Module({
   imports: [
     ConfigModule.forRoot({isGlobal:true}),
+
+    
     TypeOrmModule.forRoot({
     type: 'mysql',
     host: '172.27.0.2',
@@ -23,7 +26,10 @@ import { MedicalCareModule } from './medical-care/medical-care.module';
     entities: [__dirname + '/**/*.entity{.ts,.js}'],
     synchronize:true,
     migrationsRun: true,
-  }),UsersModule, AuthModule, MedicalCareModule,],
+  }),UsersModule, AuthModule, MedicalCareModule,
+
+
+],
   controllers: [AppController],
   providers: [AppService],
 
