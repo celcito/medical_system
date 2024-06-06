@@ -11,7 +11,7 @@ Antes de iniciar, certifique-se de ter o Docker instalado em sua máquina.
 Para clonar e executar este projeto localmente, siga os passos abaixo:
 
 1. Clone o repositório:
-bash git clone [<url_do_seu_repositorio> ](https://github.com/celcito/duo_system.git)cd duo_system
+bash git clone [<duo_system> ](https://github.com/celcito/duo_system.git)cd duo_system
 
 
 3. Inicialize o Docker e construa as imagens necessárias:
@@ -98,7 +98,7 @@ curl --location 'http://localhost:3000/users' \
 
 ```
 
-### /auth/auth/sign-in
+### /auth/sign-in
 #### POST
 ##### Request
 ```json
@@ -138,8 +138,7 @@ Dentro do contêiner Docker, após a construção da imagem.
 
 ## Migrando o Banco de Dados
 
-Para migrar o banco de dados, você pode usar o comando definido no `package.json` ou ajustar diretamente no `docker-compose.yml`. A migração é feita automaticamente ao iniciar os contêineres se as migrações estiverem corretamente configuradas.
-
+Para migrar o banco de dados, você pode usar npm migratin: run , mas o docker ja faz a migração automaticamente ao iniciar os contêineres
 ## Contribuição
 
 Contribuições são sempre bem-vindas Por favor, leia o código de conduta antes de contribuir.
