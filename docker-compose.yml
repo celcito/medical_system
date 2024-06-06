@@ -1,9 +1,25 @@
-version: '3.8'
-
+version: "3.8"
 services:
+    nodeserver:
+        build:
+            context: app
+        command: ["sh", "-c", "dockerize -wait tcp://db:3306 -timeout 30s && npm run migration:run && npm run start:dev "] 
+        container_name: app
+        ports:
+            - "3000:3000"
+        networks: 
+            - node-network
+        volumes: 
+            - ./app:/usr/app/
+            - /usr/app/node_modules
+        depends_on: 
+            - db
+
+       
     db:
         image: mysql:5.7
-        command: --innodb-use-native-aio=0 --default-authentication-plugin=mysql_native_password
+        command: --innodb-use-native-aio=0
+    
         container_name: db
         restart: always
         tty: true
@@ -14,5 +30,10 @@ services:
         environment: 
             - MYSQL_DATABASE=celcito
             - MYSQL_ROOT_PASSWORD=root
-        ports:
-            - "3306:3306"    
+        networks: 
+           - node-network
+
+networks: 
+    node-network:
+        driver: bridge
+

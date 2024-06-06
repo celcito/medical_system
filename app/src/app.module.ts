@@ -17,7 +17,7 @@ import { MedicalCareModule } from './medical-care/medical-care.module';
     
     TypeOrmModule.forRoot({
     type: 'mysql',
-    host: '172.27.0.2',
+    host: 'db',
     port: 3306,
     username: 'root',
     password: 'root',
@@ -35,3 +35,5 @@ import { MedicalCareModule } from './medical-care/medical-care.module';
 
 })
 export class AppModule {}
+
+
