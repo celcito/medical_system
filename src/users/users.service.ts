@@ -43,8 +43,7 @@ export class UsersService {
     const user = this.userRepository.create({
         email: data.email,
         password: saltAndHash,
-        firstName:data.firstName,
-        lastName:data.lastName,
+        name:data.name,
         birthDate:data.birthDate
       }); 
 

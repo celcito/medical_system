@@ -14,9 +14,8 @@ export class CreateUserDto {
   password: string;
 
   @Length(3)
-  firstName: string;
-  @Length(3)
-  lastName: string;
+  name: string;
+
   @Transform(({ value }) => new Date(value))
 
   @IsDate()

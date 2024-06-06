@@ -7,8 +7,8 @@ export class InitialDatabase1717424319962 implements MigrationInterface {
             CREATE TABLE  IF NOT EXISTS user (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 email VARCHAR(255) NOT NULL UNIQUE,
-                firstName VARCHAR(255) NULL,
-                lastName VARCHAR(255) NULL,
+                name VARCHAR(255) NULL,
+                birthDate datetime NOT NULL,
                 password VARCHAR(255) NULL,
                 timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
             )
