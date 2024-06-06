@@ -1,4 +1,4 @@
-import { Controller,  Get, UseGuards} from '@nestjs/common';
+import { Controller,  Get, UseGuards,HttpCode} from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 
@@ -16,7 +16,7 @@ export class MedicalCareController {
       description: 'This action returns welcome' ,
     
     })
-  
+    @HttpCode(200)
     getprivate(){
         return 'Bem Vindo'
     }

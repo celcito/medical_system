@@ -1,4 +1,4 @@
-import { Controller, Post,Body,} from '@nestjs/common';
+import { Controller, Post,Body,HttpCode} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SignInDto } from './dto/sign-in.dto'
 
@@ -10,5 +10,11 @@ export class AuthController {
   async signIn(@Body() signInData: SignInDto): Promise<any> {
     return this.authService.signIn(signInData.email, signInData.password);
   }
+
+  @Post('sign-out')
+  @HttpCode(200)
+  getlogout(){
+    return 'Logout successful'
+}
 
 }

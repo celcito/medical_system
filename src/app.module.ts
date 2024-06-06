@@ -24,8 +24,8 @@ import { MedicalCareModule } from './medical-care/medical-care.module';
     database: 'celcito',
     migrations: ['./migrations/*.ts'],
     entities: [__dirname + '/**/*.entity{.ts,.js}'],
-    synchronize:true,
-    migrationsRun: true,
+    synchronize:false,
+    migrationsRun: false,
   }),UsersModule, AuthModule, MedicalCareModule,
 
 
