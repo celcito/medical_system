@@ -1,26 +1,152 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Duo System
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+O Duo System é um sistema de gerenciamento de usuários e autenticação desenvolvido com Node.js e NestJS, utilizando TypeORM para interação com um banco de dados MySQL. O projeto está organizado em módulos separados para diferentes funcionalidades, como autenticação de usuários e gestão de cuidados médicos.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Pré-requisitos
+
+Antes de iniciar, certifique-se de ter o Docker instalado em sua máquina.
+
+## Instalação
+
+Para clonar e executar este projeto localmente, siga os passos abaixo:
+
+1. Clone o repositório:
+bash git clone [<url_do_seu_repositorio> ](https://github.com/celcito/duo_system.git)cd duo_system
+
+
+3. Inicialize o Docker e construa as imagens necessárias:
+
+bash docker-compose up --build
+
+
+Este comando também iniciará os contêineres definidos no `docker-compose.yml`, incluindo o servidor da aplicação e o banco de dados MySQL.
+
+## Executando o Projeto
+
+Após a inicialização bem-sucedida dos contêineres, você pode acessar a interface do usuário ou as APIs da aplicação através do navegador ou ferramentas de teste de API, como Postman.
+
+A aplicação estará disponível em `http://localhost:3000`.
+
+
+## endpoints
+
+### /users
+#### GET
+##### Request
+curl --location 'http://localhost:3000/users' \
+--data ''
+##### Response
+```json
+[
+    {
+        "id": 1,
+        "email": "celso832@gmail.com",
+        "password": "cedfbd9e35f4fd8a.2c3d3b57f67dd5061320b827fd5308f86ebad55cebb3e642f7a1fa1b09b440a1",
+        "name": "celso",
+        "birthDate": "2024-06-18T00:00:00.000Z"
+    },
+    {
+        "id": 2,
+        "email": "celso8325@gmail.com",
+        "password": "2b9c0c69028ea66b.e4b200f6da435df40b544f5f56c6764b53b19e485656a6ff87d175c4817430d7",
+        "name": "ccccc",
+        "birthDate": "2024-06-14T00:00:00.000Z"
+    }
+]
+```
+
+### /users/id
+#### GET
+##### Request
+curl --location 'http://localhost:3000/users' \
+--data ''
+##### Response
+```json
+
+{
+    "id": 1,
+    "email": "celso832@gmail.com",
+    "password": "cedfbd9e35f4fd8a.2c3d3b57f67dd5061320b827fd5308f86ebad55cebb3e642f7a1fa1b09b440a1",
+    "name": "celso",
+    "birthDate": "2024-06-18T00:00:00.000Z"
+}
+
+```
+
+
+
+### /users
+#### POST
+##### Request
+```json
+{
+    "email": "testssqtss@333acme.com",
+    "password": "@@@@@@%%%%teste12",
+    "name": "Celso",
+    "birthDate":"1977-04-29"
+}
+```
+##### Response
+```json
+{
+    "email": "testssqtss@333acme.com",
+    "password": "760e4d8b7010e3ff.3987615995969dfdeeec711fa39dfd7ef02827c83a8c283c28454685d3d864d2",
+    "name": "Celso",
+    "birthDate": "1977-04-29T00:00:00.000Z",
+    "id": 3
+}
+
+```
+
+### /auth/auth/sign-in
+#### POST
+##### Request
+```json
+{
+    "email": "testssqtss@333acme.com",
+    "password": "@@@@@@%%%%teste12",
+}
+```
+##### Response
+```json
+{
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNlbHNvODMyQGdtYWlsLmNvbSIsInN1YiI6MSwiaWF0IjoxNzE3Njg5ODE5LCJleHAiOjE3MTc2OTM0MTl9.XY3I9Xulne-Fl7Aap1IEp2R4SgiL2sTw72oW3Rzpisg"
+}
+
+
+
+### /medical-care
+GET
+##### Request
+curl --location --request GET 'http://localhost:3000/medical-care/' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNlbHNvODMyQGdtYWlsLmNvbSIsInN1YiI6MSwiaWF0IjoxNzE3NjgzMzkxLCJleHAiOjE3MTc2ODY5OTF9.W2AYfJA7OTYEUGpTyeMWmvORUv4ZQiuYI2HOaEAKOLA'
+##### Response
+```text
+Bem vindo!
+
+```
+
+## Dependências
+
+As dependências do projeto são gerenciadas via npm. Para instalar todas as dependências necessárias, execute:
+
+bash npm install
+
+
+Dentro do contêiner Docker, após a construção da imagem.
+
+## Migrando o Banco de Dados
+
+Para migrar o banco de dados, você pode usar o comando definido no `package.json` ou ajustar diretamente no `docker-compose.yml`. A migração é feita automaticamente ao iniciar os contêineres se as migrações estiverem corretamente configuradas.
+
+## Contribuição
+
+Contribuições são sempre bem-vindas Por favor, leia o código de conduta antes de contribuir.
+
+## Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
 
 ## Description
 
@@ -34,41 +160,6 @@ $ npm install
 
 ## Running the app
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
 
 Nest is [MIT licensed](LICENSE).
 # duo_system
