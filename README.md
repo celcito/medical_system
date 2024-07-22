@@ -1,6 +1,6 @@
-# Duo System
+# Medical System
 
-O Duo System é um sistema de gerenciamento de usuários e autenticação desenvolvido com Node.js e NestJS, utilizando TypeORM para interação com um banco de dados MySQL. O projeto está organizado em módulos separados para diferentes funcionalidades, como autenticação de usuários e gestão de cuidados médicos.
+O Medical System é um sistema de gerenciamento de usuários e autenticação desenvolvido com Node.js e NestJS, utilizando TypeORM para interação com um banco de dados MySQL. O projeto está organizado em módulos separados para diferentes funcionalidades, como autenticação de usuários e gestão de cuidados médicos.
 
 ## Pré-requisitos
 
@@ -11,12 +11,12 @@ Antes de iniciar, certifique-se de ter o Docker instalado em sua máquina.
 Para clonar e executar este projeto localmente, siga os passos abaixo:
 
 1. Clone o repositório:
-bash git clone [<duo_system> ](https://github.com/celcito/duo_system.git)cd duo_system
+bash git clone [<duo_system> ](https://github.com/celcito/medical_system.git)cd duo_system
 
 
 3. Inicialize o Docker e construa as imagens necessárias:
 
-bash docker-compose up --build
+bash docker-compose up -d
 
 
 Este comando também iniciará os contêineres definidos no `docker-compose.yml`, incluindo o servidor da aplicação e o banco de dados MySQL.
@@ -161,4 +161,4 @@ $ npm install
 
 
 Nest is [MIT licensed](LICENSE).
-# duo_system
+# medical_system
