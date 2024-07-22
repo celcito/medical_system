@@ -11,7 +11,7 @@ Antes de iniciar, certifique-se de ter o Docker instalado em sua máquina.
 Para clonar e executar este projeto localmente, siga os passos abaixo:
 
 1. Clone o repositório:
-bash git clone [<duo_system> ](https://github.com/celcito/medical_system.git)cd duo_system
+bash git clone [<medical_system> ](https://github.com/celcito/medical_system.git)cd duo_system
 
 
 3. Inicialize o Docker e construa as imagens necessárias:
